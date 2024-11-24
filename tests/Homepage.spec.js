@@ -110,7 +110,28 @@ test('Home page', async ({ page }) => {
       //*** Laptops category start****
       await expect(page.locator(homepage.Laptops)).toHaveText('Laptops');
 
+      const Laptop = page.locator(homepage.Laptops);
+      await Laptop.click()
+
+      const sonyVaioo7 = page.locator(homepage.sonyVaio7);
+      // Get the src attribute of the image
+      const sonyVaiooo7 = await sonyVaioo7.getAttribute('src')
+      // Assert that the src is correct
+      expect(sonyVaiooo7).toBe("imgs/sony_vaio_5.jpg");
+
+      //Verify the Title sonyvaio7
+      const sonyvaio7description = await page.locator(homepage.Monitorsdescription);
+      await expect(sonyvaio7description).toHaveText("REVIEW Sony is so confident that the VAIO S is a superior ultraportable laptop that the company proudly compares the notebook to Apple's 13-inch MacBook Pro. And in a lot of ways this notebook is better, thanks to a lighter weight, higher-resolution display, more storage space, and a Blu-ray drive. "
+      );
+
+      //Verify the price 
+      // Locate the specific h5 element containing "$790" and get the second occurrence
+      const monitorTitle = page.locator('h5').filter({ hasText: '$790' }).nth(1);
+
+      // Assert that it has the expected text
+      await expect(monitorTitle).toHaveText('$790');
       //*** Laptops category end****
+
       //****Verify the categories end *****
 
       //Footer
