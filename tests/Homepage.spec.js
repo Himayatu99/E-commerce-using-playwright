@@ -67,8 +67,63 @@ test('Home page', async ({ page }) => {
       await expect(page.locator(homepage.Laptops)).toHaveText('Laptops');
       await expect(page.locator(homepage.Monitors)).toHaveText('Monitors');
 
+      await expect(page.locator('#tbodyid')).toBeVisible();
+      //*** phones category start****
+      // Find the image by its selector
+      const samsungs6 = await page.locator(homepage.Samsungs6);
+      // Get the src attribute of the image
+      const src = await samsungs6.getAttribute('src')
+      // Assert that the src is correct
+      expect(src).toBe('imgs/galaxy_s6.jpg');
 
+      //Verify the title of galaxy s6
+      const samsungs6title = page.locator(homepage.Samsungs6title, { hasText: 'Samsung galaxy s6' })
+      await expect(samsungs6title).toHaveText('Samsung galaxy s6')
+      //Verify the Price 
+      const samsungs6Price = page.locator(homepage.Samsungs6Price, { hasText: '$360' })
+      await expect(samsungs6Price).toHaveText('$360')
+      //Verify the description 
+      const samsungs6description = page.locator(homepage.Samsungs6description);
+      await expect(samsungs6description).toHaveText("The Samsung Galaxy S6 is powered by 1.5GHz octa-core Samsung Exynos 7420 processor and it comes with 3GB of RAM. The phone packs 32GB of internal storage cannot be expanded. ")
+
+
+      //Verify the Title Nokia lumia
+      const titleLocator = page.locator('h4.card-title', { hasText: 'Nokia lumia 1520' });
+      await expect(titleLocator).toHaveText('Nokia lumia 1520');
+
+      //Verify the Price
+      const priceLocator = page.locator('h5', { hasText: '$820' });
+      await expect(priceLocator).toHaveText('$820');
+
+      // Verify the Description
+      const descriptionLocator = page.locator('p#article', {
+            hasText: 'The Nokia Lumia 1520 is powered',
+      });
+
+      // Verify the exact text
+      await expect(descriptionLocator).toHaveText(
+            'The Nokia Lumia 1520 is powered by 2.2GHz quad-core Qualcomm Snapdragon 800 processor and it comes with 2GB of RAM.'
+      );
+
+      //*** phones category start****
+
+      //*** Laptops category start****
+      await expect(page.locator(homepage.Laptops)).toHaveText('Laptops');
+
+      //*** Laptops category end****
       //****Verify the categories end *****
+
+      //Footer
+      await expect(page.locator('#footc')).toBeVisible();
+
+      //About us title
+      const footeraboutus = page.locator(homepage.footercommonselectfortitle, { hasText: 'About Us' });
+      await expect(footeraboutus).toHaveText('About Us')
+
+      //About description 
+
+      const footeraboutusdescription = page.locator(homepage.footercommonselectfordescript);
+      await expect(footeraboutusdescription).toHaveText("We believe performance needs to be validated at every stage of the software development cycle and our open source compatible, massively scalable platform makes that a reality.")
 
       //Close the side
       await page.close();
