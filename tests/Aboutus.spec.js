@@ -11,12 +11,6 @@ test('About us', async ({ page }) => {
       await about.click();
 
       //Verify the text 
-      await expect(page.locator(aboutus.Aboutustext, "About us"));
-
-      //Verify Close btn 
-      await expect(page.locator(aboutus.closeX, { hasText: 'Close' }));
-
-      const closebtn = page.locator(aboutus.closeX);
-      await closebtn.click();
+      await expect(page.locator(aboutus.Aboutustext, { hasText: "About us" })).toHaveText('About us')
 
 })
