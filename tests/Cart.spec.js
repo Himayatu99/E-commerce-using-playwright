@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test')
 const { cart } = require('../selectors/cart.spec')
 
 test('Cart page', async ({ page }) => {
-      await page.goto(cart.url);
+      await page.goto('/');
       //Cart
       await expect(page.locator(cart.Cartur)).toHaveText('Cart');
 

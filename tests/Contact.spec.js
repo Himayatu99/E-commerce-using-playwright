@@ -3,7 +3,7 @@ const { contactpage } = require('../selectors/contact.spec');
 
 test('Contact', async ({ page }) => {
 
-      await page.goto(contactpage.url)
+      await page.goto('/')
       //Contact 
       await expect(page.locator(contactpage.Contact)).toHaveText('Contact');
 

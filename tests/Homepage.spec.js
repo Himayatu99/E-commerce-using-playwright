@@ -3,7 +3,7 @@ const { homepage } = require('../selectors/homepage.spec');
 
 test('Home page', async ({ page }) => {
       //visit to site
-      await page.goto(homepage.url);
+      await page.goto('/');
 
       //Verify the title 
       const pageTitle = await page.title();

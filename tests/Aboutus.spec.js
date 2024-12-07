@@ -3,7 +3,7 @@ const { aboutus } = require('../selectors/aboutus.spec');
 
 test('About us', async ({ page }) => {
       //visit to site
-      await page.goto(aboutus.url);
+      await page.goto('/');
       //About us
       await expect(page.locator(aboutus.Aboutus)).toHaveText('About us');
 
